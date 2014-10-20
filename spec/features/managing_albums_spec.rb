@@ -35,7 +35,7 @@ feature "Manage Albums" do
     click_on 'Create Album'
 
     expect(current_path).to eq(album_path(Album.last.id))
-    expect(page.find('#notice')).to have_content(/success/i)
+    expect(find('.notice')).to have_content(/success/i)
 
   end
 
@@ -48,7 +48,7 @@ feature "Manage Albums" do
     click_on 'Update Album'
 
     expect(current_path).to eq(album_path(album))
-    expect('#notice').to have_content(/updated/i)
+    expect(find('.notice')).to have_content(/updated/i)
 
   end
 end

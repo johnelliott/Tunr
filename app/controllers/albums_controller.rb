@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :set_album, only: [:show]
+  before_filter :set_album, only: [:show, :edit, :update]
 
   def index
     @albums = Album.all
@@ -21,6 +21,17 @@ class AlbumsController < ApplicationController
   def show
   end
 
+  def edit
+    # @album = Album.find(album_params)
+  end
+
+  def update
+    if @album.update(album_params)
+      redirect_to @album, notice: "Album was successfully updated."
+    else
+      render :edit
+  end
+end
 
 private
 
