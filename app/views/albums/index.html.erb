@@ -1,8 +1,9 @@
 <h1>Listing Albums</h1>
 
-<p>No Albums available</p>
-
-<ul>
+<ul class = "albums">
+  <% if @albums.empty? %>
+  <li>No albums available</li>
+  <% else %>
   <% @albums.each do |album| %>
     <li class="album"><%= album.title %></li>
   <ul>
@@ -10,4 +11,5 @@
     <li class="year"><%= album.year %></li>
   </ul>
   <% end %>
+   <% end %>
 </ul>
