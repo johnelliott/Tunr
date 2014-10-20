@@ -1,5 +1,14 @@
 require 'rails_helper'
 
+def create_astrolounge
+  Album.create!(
+    title: 'Astrolounge',
+    artist: 'Smash Mouth',
+    year: '1999'
+  )
+end
+
+
 feature "Manage Albums" do
   scenario "List no Albums" do
     visit albums_path #albums helper
@@ -8,11 +17,7 @@ feature "Manage Albums" do
   end
 
   scenario "List all Albums" do
-    Album.create!(
-      title: 'Astrolounge',
-      artist: 'Smash Mouth',
-      year: '1999'
-    )
+    create_astrolounge
 
     visit albums_path
     expect(page.find('.album')).to have_content(/Astrolounge/)
@@ -32,22 +37,18 @@ feature "Manage Albums" do
     expect(current_path).to eq(album_path(Album.last.id))
     expect(page.find('#notice')).to have_content(/success/i)
 
-  # @album = Album.new(title: 'Fancy', artist: 'Iggy Azalia', year:'2014')
-  # expect(@album[:title]).to eql('Fancy')
-  # expect(@album[:artist]).to eql('Iggy Azalia')
-  # expect(@album[:year]).to eql(2014)
   end
 
-  # scenario "Update an Album" do
-  #   album = create_astrolounge
-  #   visit edit_album_path(album)
+  scenario "Update an Album" do
+    album = create_astrolounge
+    visit edit_album_path(album)
 
-  #   fill_in 'Title', with: 'Smash Mouth'
-  #   fill_in 'Year', with: '2001'
-  #   click_on 'Update Album'
+    fill_in 'Title', with: 'Smash Mouth'
+    fill_in 'Year', with: '2001'
+    click_on 'Update Album'
 
-  #   expect(current_path).to eq(album_path(album))
-  #   expect('#notice').to have_content(/updated/i)
+    expect(current_path).to eq(album_path(album))
+    expect('#notice').to have_content(/updated/i)
 
-  # end
+  end
 end
