@@ -4,6 +4,9 @@
   <% if @albums.empty? %>
   <li>No albums available</li>
   <% else %>
+  <% flash.each do |name, msg| -%>
+       <%= content_tag :div, msg, class: name %>
+     <% end -%>
   <% @albums.each do |album| %>
     <li class="album"><%= album.title %></li>
   <ul>
