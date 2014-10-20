@@ -3,9 +3,11 @@
 <p>No Albums available</p>
 
 <ul>
-  <li class="album"></li>
+  <% @albums.each do |album| %>
+    <li class="album"><%= album.title %></li>
   <ul>
-    <li class="artist"></li>
-    <li class="year"></li>
+    <li class="artist"><%= album.artist %></li>
+    <li class="year"><%= album.year %></li>
   </ul>
+  <% end %>
 </ul>

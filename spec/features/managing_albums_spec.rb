@@ -8,6 +8,12 @@ feature "Manage Albums" do
   end
 
   scenario "List all Albums" do
+    Album.create!(
+      title: 'Astrolounge',
+      artist: 'Smash Mouth',
+      year: '1999'
+    )
+
     visit albums_path
     expect(page.find('.album')).to have_content(/Astrolounge/)
     expect(page.find('.artist')).to have_content(/Smash Mouth/)
