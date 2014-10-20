@@ -51,4 +51,17 @@ feature "Manage Albums" do
     expect(find('.notice')).to have_content(/updated/i)
 
   end
+
+  scenario "Show an Album" do
+     album = create_astrolounge
+     visit album_path(album)
+     expect(page.find('h1')).to have_content(/Astrolounge/)
+
+    skip"Had issue loading record"
+
+  end
+
+  scenario "Remove an Album" do
+  end
+
 end
