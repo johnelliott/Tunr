@@ -24,13 +24,18 @@ feature "Manage Albums" do
   scenario "Add new Albums" do
     visit new_album_path
 
-    fill_in :album, with: 'Astrolounge'
-    fill_in :artist, with: 'Smash Mouth'
-    fill_in :year, with: '1999'
+    fill_in 'Title', with: 'Astrolounge'
+    fill_in 'Artist', with: 'Smash Mouth'
+    fill_in 'Year', with: '1999'
     click_on 'Create Album'
 
-    expect(current_path).to eq(albums_path)
-    expect('#notice').to have_content(/success/i)
+    expect(current_path).to eq(album_path(Album.last.id))
+    expect(find.('#notice')).to have_content(/success/i)
+
+  # @album = Album.new(title: 'Fancy', artist: 'Iggy Azalia', year:'2014')
+  # expect(@album[:title]).to eql('Fancy')
+  # expect(@album[:artist]).to eql('Iggy Azalia')
+  # expect(@album[:year]).to eql(2014)
   end
 
   scenario "Update an Album" do
