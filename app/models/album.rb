@@ -1,5 +1,9 @@
 class Album < ActiveRecord::Base
   def index
-    @albums = Album.all
+    unless Album.all = []
+      @albums = Album.all
+    else
+      []
+    end
   end
 end
