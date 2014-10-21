@@ -1,18 +1,22 @@
 class User < ActiveRecord::Base
+  # Add save handlers for formatting data
+  before_create :create_remember_token
+  before_save :normalize_fields
+
   # Validates name:
-  valdates :name,
+  validates :name,
     presence: true,
-    length: {maximum: 50}
+    length: { maximum: 50}
 
   # Validates email:
-  valdates :email,
+  validates :email,
     presence: true,
-    unique: {case_sensitive: false},
-    format: {with: /[^@]+@[^@]/ }
+    uniqueness: { case_sensitive: false},
+    format: { with: /[^@]+@[^@]/ }
 
   # Validates password:
-  valdates :password,
-    length: {minimum: 8}
+  validates :password,
+    length: { minimum: 8}
 
   # Secure password features
   has_secure_password
@@ -29,7 +33,7 @@ private
   
   # Create a new session token for the user
   def create_remember_token
-    remember_token = self.hash(self.new_remember_token)
+    remember_token = User.hash(User.new_remember_token)
   end
 
   def normalize_fields
