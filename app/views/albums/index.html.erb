@@ -8,11 +8,13 @@
        <%= content_tag :div, msg, class: name %>
      <% end -%>
   <% @albums.each do |album| %>
-    <li class="album"><%= album.title %></li>
+    <li class="album"><%= link_to album.title, album_path(album) %></li>
   <ul>
     <li class="artist"><%= album.artist %></li>
     <li class="year"><%= album.year %></li>
+    <li><%= link_to 'Delete', album_path(album), method: :delete, data: { confirm: 'Are you sure?' } %><li>
   </ul>
+
   <% end %>
    <% end %>
 </ul>

@@ -1,5 +1,5 @@
 class AlbumsController < ApplicationController
-  before_filter :set_album, only: [:show, :edit, :update]
+  before_filter :set_album, only: [:show, :edit, :update, :delete]
 
   def index
     @albums = Album.all
@@ -31,6 +31,10 @@ class AlbumsController < ApplicationController
     else
       render :edit
   end
+end
+
+def delete
+  @album.destroy
 end
 
 private
