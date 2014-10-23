@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_action :require_signin, only: [:index, :show, :edit]
+  skip_before_action :require_signin, only: [:new, :create]
 
   def index
     @users = User.all
   end
 
-  def new
+  def new #Sign Up form
     @user = User.new
   end
 

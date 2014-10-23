@@ -1,5 +1,6 @@
 require 'pry'
 class SessionsController < ApplicationController
+  skip_before_action :require_signin, only: [:new, :create]
 
   def new
   end
@@ -14,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_back_or(root_path)
     else
       flash[:error] = "Invalid email/password"
-      redirect_to new_sessions_path #, alert: "Invalid..."
+      redirect_to new_session_path #, alert: "Invalid..."
     end
   end
 
