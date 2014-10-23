@@ -29,19 +29,20 @@ module SessionsHelper
     self.current_user = nil
   end
 
-  #location management methods
+  # Location management methods
   def store_location
     if request.get?
-      session[:return_to] = request_url
+      session[:return_to] = request.url
     end
   end
 
-  # redirect the user back to where they were before they logged in
+  # Redirect the user back to where they were before they logged in
   def redirect_back_or(default)
     reditect_to(sessions[:return_to] || default)
     sessions.delete(:return_to)
   end
 
+  # Security checkpoint:
   def require_signin
     if !signed_in?
       store_location
