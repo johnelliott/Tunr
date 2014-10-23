@@ -38,8 +38,8 @@ module SessionsHelper
 
   # Redirect the user back to where they were before they logged in
   def redirect_back_or(default)
-    reditect_to(sessions[:return_to] || default)
-    sessions.delete(:return_to)
+    reditect_to(session[:return_to] || default)
+    session.delete(:return_to)
   end
 
   # Security checkpoint:

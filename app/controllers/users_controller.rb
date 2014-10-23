@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # Require signin if the user does anything that activcates the users controller
-  skip_before_action :require_signin only: [:new, :create]
+  skip_before_action :require_signin, only: [:new, :create]
 
   def index
     @users = User.all
