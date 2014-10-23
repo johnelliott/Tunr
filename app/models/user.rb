@@ -36,6 +36,7 @@ private
     remember_token = User.hash(User.new_remember_token)
   end
 
+# Normalize fields for consistency:
   def normalize_fields
     self.email.downcase!
   end
