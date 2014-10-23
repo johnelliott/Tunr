@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_signin
+  ski[_before_action :require_signin, only: [:new, :create]
   def index
     @users = User.all
   end
