@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   #session is not presistant in the database
 
   get '/signup', to: 'users#new'
-  get '/signup', to: 'sessions#new'
+  get '/signin', to: 'sessions#new'
   get '/signout', to: 'sessions#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # root 'albums#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

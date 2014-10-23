@@ -6,19 +6,21 @@ class SessionsController < ApplicationController
 
   def create
     #Find user by their email
-    binding.pry
     user = User.find_by(email: params[:session][:email].downcase)
 
     # Test if the user was found AND authenticates
     if user && user.authenticate(params[:session][:password])
-      #TODO Sign In the User
+      sign_in(user)
+      redirect_back_or(root_path)
     else
       flash[:error] = "Invalid email/password"
-      redirect_to new_sessions_path
+      redirect_to new_sessions_path #, alert: "Invalid..."
     end
   end
 
   def destroy
+    sign_out
+    redirect_to root_url
   end
 
 end
