@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :require_signin
   def index
     @users = User.all
   end
@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(users_params)
     if @user.save
+      sign_in @user # Sings in a newly signed up user
       redirect_to @user
     else
       render :new # Re-renders the form because of failure to add new user

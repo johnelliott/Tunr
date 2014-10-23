@@ -3,10 +3,10 @@
 <%= render 'common/flash' %>
 
 <%= form_for :session, url: sessions_path do |f| %>
-  <%= f.lable :email %>
+  <%= f.label :email %>
   <%= f.text_field :email %>
 
-  <%= f.lable :password %>
+  <%= f.label :password %>
   <%= f.password_field :password %>
 
   <%= f.submit "Sign In", id: "signin" %>
